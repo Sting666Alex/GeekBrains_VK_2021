@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="it9-iU-hKY">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -368,35 +368,22 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uh6-0f-dut">
-                                <rect key="frame" x="100" y="114" width="200" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="e2a-V6-mM6"/>
-                                    <constraint firstAttribute="width" constant="200" id="uiS-ki-ctO"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Qbf-cP-kqL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="mHg-jJ-oQt" firstAttribute="centerX" secondItem="LlZ-3o-gBJ" secondAttribute="centerX" id="crk-wK-hIl"/>
-                            <constraint firstItem="uh6-0f-dut" firstAttribute="leading" secondItem="Qbf-cP-kqL" secondAttribute="leading" constant="100" id="hNR-iu-U18"/>
                             <constraint firstItem="mHg-jJ-oQt" firstAttribute="centerY" secondItem="LlZ-3o-gBJ" secondAttribute="centerY" id="rec-d6-bgL"/>
-                            <constraint firstItem="uh6-0f-dut" firstAttribute="top" secondItem="Qbf-cP-kqL" secondAttribute="top" constant="70" id="vRB-Ji-1Ix"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="My Avatar" image="person" catalog="system" id="fLH-m0-GlZ" userLabel="MyAvatar"/>
                     <connections>
                         <outlet property="avatarIV" destination="mHg-jJ-oQt" id="iYh-I1-nDC"/>
-                        <outlet property="tokenUser" destination="uh6-0f-dut" id="tFu-fc-Qjn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4jk-46-edI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047.8260869565217" y="1242.8571428571429"/>
+            <point key="canvasLocation" x="1048" y="1244"/>
         </scene>
         <!--Comunity-->
         <scene sceneID="b1l-tw-9PV">

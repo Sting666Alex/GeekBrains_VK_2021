@@ -11,15 +11,11 @@ class AvatarViewController: UIViewController {
 
     @IBOutlet weak var avatarIV: UIImageView!
     
-    @IBOutlet weak var tokenUser: UILabel!
-    
     let url: URL = URL(string:"") ?? URL(string: "https://upload.wikimedia.org/wikipedia/ru/a/a2/Phil_Collins_Face_Value.jpeg")!
     
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        tokenUser.text = UserSession.shared.token // singltone
-        
         let tap = UITapGestureRecognizer(target: self, action: #selector(iconTapped))
         
         avatarIV.addGestureRecognizer(tap)

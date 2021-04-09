@@ -23,7 +23,7 @@
 		C095F7AE25F8A0A200FA2989 /* FirstLetterOfTheName.swift in Sources */ = {isa = PBXBuildFile; fileRef = C095F7AD25F8A0A200FA2989 /* FirstLetterOfTheName.swift */; };
 		C0C005E525DCE26100A47A61 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C005E425DCE26100A47A61 /* AppDelegate.swift */; };
 		C0C005E725DCE26100A47A61 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C005E625DCE26100A47A61 /* SceneDelegate.swift */; };
-		C0C005E925DCE26100A47A61 /* FirsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C005E825DCE26100A47A61 /* FirsScreen.swift */; };
+		C0C005E925DCE26100A47A61 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C005E825DCE26100A47A61 /* ViewController.swift */; };
 		C0C005EC25DCE26100A47A61 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0C005EA25DCE26100A47A61 /* Main.storyboard */; };
 		C0C005EF25DCE26100A47A61 /* VK_Belov.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C0C005ED25DCE26100A47A61 /* VK_Belov.xcdatamodeld */; };
 		C0C005F125DCE26100A47A61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0C005F025DCE26100A47A61 /* Assets.xcassets */; };
@@ -57,7 +57,7 @@
 		C0C005E125DCE26100A47A61 /* VK_Belov.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VK_Belov.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0C005E425DCE26100A47A61 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0C005E625DCE26100A47A61 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C0C005E825DCE26100A47A61 /* FirsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirsScreen.swift; sourceTree = "<group>"; };
+		C0C005E825DCE26100A47A61 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C0C005EB25DCE26100A47A61 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C0C005EE25DCE26100A47A61 /* VK_Belov.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VK_Belov.xcdatamodel; sourceTree = "<group>"; };
 		C0C005F025DCE26100A47A61 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 		C00EB458260DDB00007BAEBF /* FirstView */ = {
 			isa = PBXGroup;
 			children = (
-				C0C005E825DCE26100A47A61 /* FirsScreen.swift */,
+				C0C005E825DCE26100A47A61 /* ViewController.swift */,
 				C00EB455260DDAF8007BAEBF /* BaseViewController.swift */,
 			);
 			path = FirstView;
@@ -141,7 +141,6 @@
 			isa = PBXGroup;
 			children = (
 				C0C005ED25DCE26100A47A61 /* VK_Belov.xcdatamodeld */,
-				C0C005F525DCE26100A47A61 /* Info.plist */,
 				C0C005F025DCE26100A47A61 /* Assets.xcassets */,
 				C0C005F225DCE26100A47A61 /* LaunchScreen.storyboard */,
 			);
@@ -203,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				C095F79D25EEB6D000FA2989 /* Constants */,
+				C0C005F525DCE26100A47A61 /* Info.plist */,
 				C013CD5725E41CAD00292695 /* View */,
 				C013CD5525E41C6E00292695 /* App */,
 				C013CD5625E41C7B00292695 /* Models */,
@@ -327,7 +327,7 @@
 				C0CB3DC526176ACE00563F2B /* AuxiliaryFunctions.swift in Sources */,
 				C013CD6125E4D0A500292695 /* FotoCollectionViewController.swift in Sources */,
 				C0ECE7DE25E98F6900E8A2D8 /* ComunityTableViewController.swift in Sources */,
-				C0C005E925DCE26100A47A61 /* FirsScreen.swift in Sources */,
+				C0C005E925DCE26100A47A61 /* ViewController.swift in Sources */,
 				C081E36D260BA9DF00EE3377 /* NewsCollectionViewCell.swift in Sources */,
 				C095F7A725F339D700FA2989 /* CustomImageView.swift in Sources */,
 				C00EB453260DD60F007BAEBF /* LoadingView.swift in Sources */,
@@ -496,7 +496,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P2G675DYLS;
-				INFOPLIST_FILE = VK_Belov/Resources/Info.plist;
+				INFOPLIST_FILE = VK_Belov/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -515,7 +515,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P2G675DYLS;
-				INFOPLIST_FILE = VK_Belov/Resources/Info.plist;
+				INFOPLIST_FILE = VK_Belov/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

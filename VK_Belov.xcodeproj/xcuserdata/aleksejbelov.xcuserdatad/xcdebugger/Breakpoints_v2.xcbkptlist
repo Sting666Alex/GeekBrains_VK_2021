@@ -510,8 +510,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "50"
             endingLineNumber = "50"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "StartAnimating(width:height:)"
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "3F940EB3-603E-438C-B817-18F40150AF78 - 17313e422cf7950d"

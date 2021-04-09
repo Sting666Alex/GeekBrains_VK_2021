@@ -7,26 +7,11 @@
 
 import UIKit
 
-final class UserSession {
-    
-    static let shared = UserSession()
-    
-    private init() {}
-    
-    var token = ""
-    var userID = 0
-    
-}
-
-
 class ViewController: BaseViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var loginTestField: UITextField!
     @IBOutlet weak var passwordTestField: UITextField!
-    
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,10 +22,6 @@ class ViewController: BaseViewController {
         // << Это на уроке - добавление не в storyboard
         
         //addTapGestureToHideKeyboard() // Это из форумов
-        
-        let user = UserSession.shared
-        user.token = "tokenUserVK"
-        user.userID = 123456789
         
         showLoading()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
