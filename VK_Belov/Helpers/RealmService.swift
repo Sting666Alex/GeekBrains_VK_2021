@@ -168,3 +168,39 @@ func loadItemPhotoFrendsRealData(idFrend: String) -> [ItemPhotoFrends]{
     
     return itemPhotoFrends
 }
+
+func loadNewsRealData() -> [ItemFrends]{
+    
+    var itemFrends: [ItemFrends] = []
+    
+    do{
+        let realm = try! Realm()
+        let frends: Results<ItemFrendsRealm> = {realm.objects(ItemFrendsRealm.self) }()
+            
+        for item in frends {
+            let frend: ItemFrends = .init(firstName: item.name,
+                                                  id: item.id,
+                                                  lastName: item.surname,
+                                                  canAccessClosed: item.canAccessClosed,
+                                                  isClosed: item.isClosed,
+                                                  photo50: item.urlFoto!,
+                                                  trackCode: item.trackCode)
+
+            // проверка на дубли в базе данных, такое произошло в момент тестирования
+            let filterMyNews = itemFrends.filter{
+                $0.name.lowercased().contains(frend.name.lowercased())
+            }
+            
+            if filterMyNews.isEmpty {
+                itemFrends.append(frend)
+            }
+        }
+
+
+        //print(frends)
+    }catch{
+        print(error)
+    }
+    
+    return itemFrends
+}

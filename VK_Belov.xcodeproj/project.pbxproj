@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		237B938A8E0BE10C3148B4C8 /* Pods_VK_Belov.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA875F158BAAECB3DFB09F02 /* Pods_VK_Belov.framework */; };
-		C00E7A012652E63F00CA2C41 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C00E7A002652E63F00CA2C41 /* GoogleService-Info.plist */; };
 		C00E7A032652EA3700CA2C41 /* FireBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00E7A022652EA3700CA2C41 /* FireBase.swift */; };
 		C00EB453260DD60F007BAEBF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00EB452260DD60F007BAEBF /* LoadingView.swift */; };
 		C00EB456260DDAF8007BAEBF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00EB455260DDAF8007BAEBF /* BaseViewController.swift */; };
@@ -26,6 +25,7 @@
 		C095F7A225F2972200FA2989 /* AvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C095F7A125F2972200FA2989 /* AvatarViewController.swift */; };
 		C095F7A725F339D700FA2989 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C095F7A625F339D700FA2989 /* CustomImageView.swift */; };
 		C095F7AE25F8A0A200FA2989 /* FirstLetterOfTheName.swift in Sources */ = {isa = PBXBuildFile; fileRef = C095F7AD25F8A0A200FA2989 /* FirstLetterOfTheName.swift */; };
+		C0B699D3265581770097C9FD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0B699D2265581770097C9FD /* GoogleService-Info.plist */; };
 		C0C005E525DCE26100A47A61 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C005E425DCE26100A47A61 /* AppDelegate.swift */; };
 		C0C005E725DCE26100A47A61 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C005E625DCE26100A47A61 /* SceneDelegate.swift */; };
 		C0C005E925DCE26100A47A61 /* FirsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C005E825DCE26100A47A61 /* FirsScreen.swift */; };
@@ -50,7 +50,6 @@
 
 /* Begin PBXFileReference section */
 		2B8FD4FB715894262F2D76B4 /* Pods-VK_Belov.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK_Belov.release.xcconfig"; path = "Target Support Files/Pods-VK_Belov/Pods-VK_Belov.release.xcconfig"; sourceTree = "<group>"; };
-		C00E7A002652E63F00CA2C41 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C00E7A022652EA3700CA2C41 /* FireBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBase.swift; sourceTree = "<group>"; };
 		C00EB452260DD60F007BAEBF /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		C00EB455260DDAF8007BAEBF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +67,7 @@
 		C095F7A125F2972200FA2989 /* AvatarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewController.swift; sourceTree = "<group>"; };
 		C095F7A625F339D700FA2989 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		C095F7AD25F8A0A200FA2989 /* FirstLetterOfTheName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLetterOfTheName.swift; sourceTree = "<group>"; };
+		C0B699D2265581770097C9FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C0C005E125DCE26100A47A61 /* VK_Belov.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VK_Belov.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0C005E425DCE26100A47A61 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0C005E625DCE26100A47A61 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -232,7 +232,7 @@
 		C0C005E325DCE26100A47A61 /* VK_Belov */ = {
 			isa = PBXGroup;
 			children = (
-				C00E7A002652E63F00CA2C41 /* GoogleService-Info.plist */,
+				C0B699D2265581770097C9FD /* GoogleService-Info.plist */,
 				C095F79D25EEB6D000FA2989 /* Constants */,
 				C013CD5725E41CAD00292695 /* View */,
 				C013CD5525E41C6E00292695 /* App */,
@@ -359,12 +359,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C081E36E260BA9DF00EE3377 /* NewsCollectionViewCell.xib in Resources */,
+				C0B699D3265581770097C9FD /* GoogleService-Info.plist in Resources */,
 				C0C005F425DCE26100A47A61 /* LaunchScreen.storyboard in Resources */,
 				C0C005F125DCE26100A47A61 /* Assets.xcassets in Resources */,
 				C0C8A50025FC91F7005E2956 /* FotoCollectionViewCell.xib in Resources */,
 				C0C8A50D25FD463C005E2956 /* CustomTableViewCell.xib in Resources */,
 				C0C005EC25DCE26100A47A61 /* Main.storyboard in Resources */,
-				C00E7A012652E63F00CA2C41 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

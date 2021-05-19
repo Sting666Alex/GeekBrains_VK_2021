@@ -28,6 +28,9 @@ class NewsCollectionView: UICollectionViewController,
     
     private func loadNews(){
         myNews = NewsClass.arrNewsClass.sorted(by: { $0.date < $1.date } )
+        
+        WebService().newsRequest()
+        
     }
     
     private func filterNews(text: String?){
