@@ -53,7 +53,7 @@ class NewsCollectionView: UICollectionViewController,
             let activNews = getNews(for: indexPath)
             do{
                 cell.configure(
-                    titleLableC: activNews.text!,
+                    titleLableC: activNews.text ?? "",
                     newsElement: activNews
                 )
             }catch{

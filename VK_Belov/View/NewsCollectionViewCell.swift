@@ -68,11 +68,11 @@ class NewsCollectionViewCell: UICollectionViewCell {
         titleLable.text = titleLableC
         titleText.text  = titleLableC
         
-        titleFoto.backgroundColor = .gray
+        //titleFoto.backgroundColor = .gray
         titleFoto.layer.cornerRadius = titleFoto.frame.width / 2
         
         
-        titleFoto.backgroundColor = .gray
+        //titleFoto.backgroundColor = .gray
         titleFoto.layer.shouldRasterize = false
         titleFoto.clipsToBounds = false
         titleFoto.layer.shadowPath = UIBezierPath(roundedRect: titleFoto.bounds, cornerRadius: 5).cgPath
@@ -81,24 +81,21 @@ class NewsCollectionViewCell: UICollectionViewCell {
         titleFoto.layer.shadowRadius = titleFoto.frame.height * 0.2
         titleFoto.layer.shadowOpacity = 1
         titleFoto.layer.shadowOffset = .init(width: 2, height: 2) //(width: 10, height: 10)
+       
+        guard let img = UIImage(named: "1") else { return }
+        var data = img.jpegData(compressionQuality: 1)
         
+        if let url:URL = URL(string: newsElement.photos?.items[0].sizes[0].url ?? ""){
+            data = try? Data(contentsOf: url)
+        }
         
-        //let url: URL = URL(string: user.urlFoto ?? "person")!
-        //let data = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-        //myImage.image = UIImage(data: data!)
-        
-        //let myImage = UIImageView(frame: titleFoto.bounds)
-        
-        //if let image = user.urlFoto {
-        //    myImage.image = UIImage(data: data!) // titleFoto.image = UIImage(named: image)
-        //} else {
-        //    myImage.image = UIImage(named: "person")
-        //}
+        let myImage = UIImageView(frame: titleFoto.bounds)
+        myImage.image = UIImage(data: data!)
         
         //myImage.clipsToBounds = true
         //myImage.layer.cornerRadius = titleFoto.frame.height / 2
         
-        //titleFoto.addSubview(myImage)
+        titleFoto.addSubview(myImage)
         
     }
 
