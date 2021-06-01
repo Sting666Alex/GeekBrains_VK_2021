@@ -22,6 +22,9 @@ final class UserSession {
     
     let countPhoto = "50"
     let countFrends = "50"
+    
+    let countNews = "11"
+    
 }
 
 
@@ -143,7 +146,39 @@ class WebService{
         }
     }
     
+    func newsRequest( completion: @escaping ([NewsResponseItem]) -> Void){
+            
+        let baseUrl = "https://api.vk.com/method/"
+        let path = "newsfeed.get"
+        let parameters: Parameters = [
+            "user_id": String(UserSession.shared.userID),
+            "access_token": UserSession.shared.token,
+            //"fields": "name,photo_50",
+            "count": String(UserSession.shared.countNews),
+            "v": UserSession.shared.v
+        ]
+        // составляем url из базового адреса сервиса и конкретного пути к ресурсу
+        let url = baseUrl+path
+//        let url = "https://api.vk.com/method/newsfeed.get?user_id="+id+"&v=5.130&access_token=" + token
+                
+        let urlTest = "https://api.vk.com/method/newsfeed.get?user_id=-" + String(UserSession.shared.userID) +
+                                "&v=5.130&access_token=" + String(UserSession.shared.token)
+        //
+        // делаем запрос
+        Alamofire.request(url, method: .get, parameters: parameters).responseData { response in
+            guard let data = response.value else { return }
+            do {
+                let news = try! JSONDecoder().decode(NewsElement.self, from: data)
+                completion(news.response.items)
+                //insertOrUpdate(itemFrends: frends.response.items)
+            } catch {
+                print(error)
+            }
+        }
+        
+    }
     
+
     
     // MARK: - not Use
     func photosAlbumRequest(idFrend: String, completion: @escaping ([ItemPhotoAlbums]) -> Void ){

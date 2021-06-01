@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class NewsCollectionView: UICollectionViewController,
                           //UICollectionViewDataSource,
@@ -13,61 +14,30 @@ class NewsCollectionView: UICollectionViewController,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //Регистрация своего view controller
         collectionView.register(UINib(nibName: "NewsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: NewsCollectionViewCell.reuseId)
         
         loadNews()
-        setupDataSource()
     }
     // MARK: - Data source
-    var myNews: [NewsClass] = []
-    var filterMyNews: [NewsClass] = []
-    var sections: [Date] = []
-    var myNewsSection: [Date: [NewsClass]] = [:]
-    
+    var myNewsItem: [NewsResponseItem] = []
+
     private func loadNews(){
-        myNews = NewsClass.arrNewsClass.sorted(by: { $0.date < $1.date } )
-    }
-    
-    private func filterNews(text: String?){
-        guard let text = text, !text.isEmpty else{
-            filterMyNews = myNews
-            return
-        }
-        //filterMyNews = myNews.filter{
-            //$0.date.lowercased().contains(text.lowercased())
-        //}
-    }
-    
-    private func setupDataSource(){
-        // 1 sort myFrends
-        //
-        
-        filterNews(text: "")//text: searchBar.text)
-        
-        // 2 create section firs latters
-        let firstdate = filterMyNews.map {  $0.date  } //.uppercased().prefix(1)
-        sections = Array(Set(firstdate)).sorted()
-        
-        // 3 create myFrendsSection
-        myNewsSection.removeAll()
-        for section in sections {
-            myNewsSection[section] = filterMyNews.filter{
-                $0.date == section
-            }
+        WebService().newsRequest{ [weak self] frendsElementRequest in
+            self?.myNewsItem = frendsElementRequest
+            //self?.setupDataSource()
+            self?.collectionView.reloadData() //.tableView.reloadData()
         }
     }
     
-    private func getNews( for indexPath: IndexPath) -> NewsClass {
-        let sectionLetter = sections[indexPath.section]
-        return myNewsSection[sectionLetter]![0] //[indexPath.row]
+    private func getNews( for indexPath: IndexPath) -> NewsResponseItem {
+        return myNewsItem[indexPath.row] //[indexPath.row]
     }
     
     // MARK: - Collection view data source
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return myNewsItem.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -79,21 +49,25 @@ class NewsCollectionView: UICollectionViewController,
         let width:CGFloat = bounds.size.width
         //let height:CGFloat = bounds.size.height
         
-        let activNews = getNews(for: indexPath)
-        
-        cell.configure(titleLableC: activNews.titleLable, titleTextC: activNews.textLable, titleFotoString: activNews.urlFoto, whoAndThenLableString: String(activNews.who + " " + getDate(dateEnd: activNews.date)), width: width, likeNumberC: String(activNews.likeNumber))
-        
+        if !myNewsItem.isEmpty{
+            let activNews = getNews(for: indexPath)
+            do{
+                cell.configure(
+                    titleLableC: activNews.text!,
+                    newsElement: activNews
+                )
+            }catch{
+               print(error)
+            }
+        }
         return cell
     }
 
     // MARK: - UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
-        
         //get width screen
         let width = collectionView.frame.width  / 2
-        
         return CGSize(width: width, height: width)
-        
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

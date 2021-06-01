@@ -46,26 +46,59 @@ class NewsCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func configure(titleLableC: String, titleTextC: String, titleFotoString: String, whoAndThenLableString: String, width: CGFloat, likeNumberC: String){
+    func configure(titleLableC: String, newsElement: NewsResponseItem){
+        
+//        titleLable.text = titleLableC
+//        titleText.text  = titleTextC
+//        whoAndThenLable.text = whoAndThenLableString
+//
+//        likeNumber.text = likeNumberC
+//
+//        // here, make a check for fullness
+//        if titleFotoString.isEmpty {
+//            titleFoto.image = UIImage(systemName: "sun.min")
+//        } else {
+//            titleFoto.image = UIImage(systemName: titleFotoString)
+//        }
+//        titleFoto.center = center
+//        titleFoto.frame = CGRect(x: 0, y: 0, width: Int(width), height: Int(width))
+//
+//        numberOfViewsText.text = "10"
         
         titleLable.text = titleLableC
-        titleText.text  = titleTextC
-        whoAndThenLable.text = whoAndThenLableString
+        titleText.text  = titleLableC
         
-        likeNumber.text = likeNumberC
-        
-        // here, make a check for fullness
-        if titleFotoString.isEmpty {
-            titleFoto.image = UIImage(systemName: "sun.min")
-        } else {
-            titleFoto.image = UIImage(systemName: titleFotoString)
-        }
-        titleFoto.center = center
-        titleFoto.frame = CGRect(x: 0, y: 0, width: Int(width), height: Int(width))
-        
-        numberOfViewsText.text = "10"
+        titleFoto.backgroundColor = .gray
+        titleFoto.layer.cornerRadius = titleFoto.frame.width / 2
         
         
+        titleFoto.backgroundColor = .gray
+        titleFoto.layer.shouldRasterize = false
+        titleFoto.clipsToBounds = false
+        titleFoto.layer.shadowPath = UIBezierPath(roundedRect: titleFoto.bounds, cornerRadius: 5).cgPath
+        
+        titleFoto.layer.shadowColor = UIColor.darkGray.cgColor
+        titleFoto.layer.shadowRadius = titleFoto.frame.height * 0.2
+        titleFoto.layer.shadowOpacity = 1
+        titleFoto.layer.shadowOffset = .init(width: 2, height: 2) //(width: 10, height: 10)
+        
+        
+        //let url: URL = URL(string: user.urlFoto ?? "person")!
+        //let data = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+        //myImage.image = UIImage(data: data!)
+        
+        //let myImage = UIImageView(frame: titleFoto.bounds)
+        
+        //if let image = user.urlFoto {
+        //    myImage.image = UIImage(data: data!) // titleFoto.image = UIImage(named: image)
+        //} else {
+        //    myImage.image = UIImage(named: "person")
+        //}
+        
+        //myImage.clipsToBounds = true
+        //myImage.layer.cornerRadius = titleFoto.frame.height / 2
+        
+        //titleFoto.addSubview(myImage)
         
     }
 

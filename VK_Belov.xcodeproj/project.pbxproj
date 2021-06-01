@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		237B938A8E0BE10C3148B4C8 /* Pods_VK_Belov.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA875F158BAAECB3DFB09F02 /* Pods_VK_Belov.framework */; };
-		C00E7A012652E63F00CA2C41 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C00E7A002652E63F00CA2C41 /* GoogleService-Info.plist */; };
 		C00E7A032652EA3700CA2C41 /* FireBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00E7A022652EA3700CA2C41 /* FireBase.swift */; };
 		C00EB453260DD60F007BAEBF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00EB452260DD60F007BAEBF /* LoadingView.swift */; };
 		C00EB456260DDAF8007BAEBF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00EB455260DDAF8007BAEBF /* BaseViewController.swift */; };
@@ -44,13 +43,13 @@
 		C0C8A50D25FD463C005E2956 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0C8A50B25FD463C005E2956 /* CustomTableViewCell.xib */; };
 		C0CB3DC2261768B900563F2B /* NewsClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CB3DC1261768B900563F2B /* NewsClass.swift */; };
 		C0CB3DC526176ACE00563F2B /* AuxiliaryFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CB3DC426176ACE00563F2B /* AuxiliaryFunctions.swift */; };
+		C0D8718B26655A3200D0D097 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0D8718A26655A3100D0D097 /* GoogleService-Info.plist */; };
 		C0ECE7DE25E98F6900E8A2D8 /* ComunityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECE7DD25E98F6900E8A2D8 /* ComunityTableViewController.swift */; };
 		C0ECE7E625EA0A5800E8A2D8 /* AllComunityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ECE7E525EA0A5800E8A2D8 /* AllComunityTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2B8FD4FB715894262F2D76B4 /* Pods-VK_Belov.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK_Belov.release.xcconfig"; path = "Target Support Files/Pods-VK_Belov/Pods-VK_Belov.release.xcconfig"; sourceTree = "<group>"; };
-		C00E7A002652E63F00CA2C41 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C00E7A022652EA3700CA2C41 /* FireBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBase.swift; sourceTree = "<group>"; };
 		C00EB452260DD60F007BAEBF /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		C00EB455260DDAF8007BAEBF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +87,7 @@
 		C0C8A50B25FD463C005E2956 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		C0CB3DC1261768B900563F2B /* NewsClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsClass.swift; sourceTree = "<group>"; };
 		C0CB3DC426176ACE00563F2B /* AuxiliaryFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuxiliaryFunctions.swift; sourceTree = "<group>"; };
+		C0D8718A26655A3100D0D097 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C0ECE7DD25E98F6900E8A2D8 /* ComunityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComunityTableViewController.swift; sourceTree = "<group>"; };
 		C0ECE7E525EA0A5800E8A2D8 /* AllComunityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllComunityTableViewController.swift; sourceTree = "<group>"; };
 		D09D6496C8CB0CABB3D3771F /* Pods-VK_Belov.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK_Belov.debug.xcconfig"; path = "Target Support Files/Pods-VK_Belov/Pods-VK_Belov.debug.xcconfig"; sourceTree = "<group>"; };
@@ -232,7 +232,7 @@
 		C0C005E325DCE26100A47A61 /* VK_Belov */ = {
 			isa = PBXGroup;
 			children = (
-				C00E7A002652E63F00CA2C41 /* GoogleService-Info.plist */,
+				C0D8718A26655A3100D0D097 /* GoogleService-Info.plist */,
 				C095F79D25EEB6D000FA2989 /* Constants */,
 				C013CD5725E41CAD00292695 /* View */,
 				C013CD5525E41C6E00292695 /* App */,
@@ -359,12 +359,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C081E36E260BA9DF00EE3377 /* NewsCollectionViewCell.xib in Resources */,
+				C0D8718B26655A3200D0D097 /* GoogleService-Info.plist in Resources */,
 				C0C005F425DCE26100A47A61 /* LaunchScreen.storyboard in Resources */,
 				C0C005F125DCE26100A47A61 /* Assets.xcassets in Resources */,
 				C0C8A50025FC91F7005E2956 /* FotoCollectionViewCell.xib in Resources */,
 				C0C8A50D25FD463C005E2956 /* CustomTableViewCell.xib in Resources */,
 				C0C005EC25DCE26100A47A61 /* Main.storyboard in Resources */,
-				C00E7A012652E63F00CA2C41 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
