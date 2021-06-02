@@ -278,7 +278,10 @@ struct NewsPhotos: Codable {
 
 // MARK: - PhotosItem
 struct NewsPhotosItem: Codable {
-    let albumID, date, id, ownerID: Int
+    let albumID: Int
+    let date: Int
+    let id: Int
+    let ownerID: Int
     let hasTags: Bool
     let accessKey: String
     let postID: Int?
@@ -288,7 +291,8 @@ struct NewsPhotosItem: Codable {
 //    let likes: NewsFluffyLikes
 //    let reposts: NewsReposts
 //    let comments: NewsViews
-    let canComment, canRepost: Int
+    let canComment: Int
+    let canRepost: Int
 
     enum CodingKeys: String, CodingKey {
         case albumID = "album_id"

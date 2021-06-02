@@ -24,9 +24,6 @@ class NewsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var numberOfViewsText: UILabel!
     
-    
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -48,29 +45,33 @@ class NewsCollectionViewCell: UICollectionViewCell {
     
     func configure(titleLableC: String, newsElement: NewsResponseItem){
         
-//        titleLable.text = titleLableC
-//        titleText.text  = titleTextC
-//        whoAndThenLable.text = whoAndThenLableString
-//
-//        likeNumber.text = likeNumberC
-//
-//        // here, make a check for fullness
-//        if titleFotoString.isEmpty {
-//            titleFoto.image = UIImage(systemName: "sun.min")
-//        } else {
-//            titleFoto.image = UIImage(systemName: titleFotoString)
-//        }
-//        titleFoto.center = center
-//        titleFoto.frame = CGRect(x: 0, y: 0, width: Int(width), height: Int(width))
-//
-//        numberOfViewsText.text = "10"
-        
         titleLable.text = titleLableC
         titleText.text  = titleLableC
         
-        //titleFoto.backgroundColor = .gray
-        titleFoto.layer.cornerRadius = titleFoto.frame.width / 2
         
+        titleFoto.isHidden = false
+        
+        if newsElement.type == "post"{
+            if let numberOfViews = newsElement.views?.count{
+                numberOfViewsText.text = String(numberOfViews)
+            }
+            if let likes = newsElement.likes?.count{
+                likeNumber.text = String(likes)
+            }
+            
+        }
+        else if newsElement.type == "wall_photo"{
+            addPhotoInUiView(newsElement: newsElement)
+        }else{
+            addPhotoInUiView(newsElement: newsElement)
+        }
+    }
+
+    func addPhotoInUiView(newsElement: NewsResponseItem){
+        
+        titleFoto.isHidden = true
+        
+        titleFoto.layer.cornerRadius = titleFoto.frame.width / 2
         
         //titleFoto.backgroundColor = .gray
         titleFoto.layer.shouldRasterize = false
@@ -85,8 +86,12 @@ class NewsCollectionViewCell: UICollectionViewCell {
         guard let img = UIImage(named: "1") else { return }
         var data = img.jpegData(compressionQuality: 1)
         
-        if let url:URL = URL(string: newsElement.photos?.items[0].sizes[0].url ?? ""){
-            data = try? Data(contentsOf: url)
+        if let countSize = newsElement.photos?.items[0].sizes{
+            if !countSize.isEmpty {
+                if let url:URL = URL(string: countSize[0].url){
+                    data = try? Data(contentsOf: url)
+                }
+            }
         }
         
         let myImage = UIImageView(frame: titleFoto.bounds)
@@ -96,9 +101,8 @@ class NewsCollectionViewCell: UICollectionViewCell {
         //myImage.layer.cornerRadius = titleFoto.frame.height / 2
         
         titleFoto.addSubview(myImage)
-        
     }
-
+    
     @objc func ForwardTapped(gesture: UITapGestureRecognizer){
         forwardButton.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
         UIView.animate(withDuration: 0.4,
