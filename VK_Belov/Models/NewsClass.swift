@@ -80,7 +80,9 @@ extension NewsClass {
 //
 //   let welcome = try? newJSONDecoder().decode(Welcome.self, from: jsonData)
 
-// MARK: - Welcome
+import Foundation
+
+// MARK: - NewsElement
 struct NewsElement: Codable {
     let response: NewsResponse
 }
@@ -88,24 +90,24 @@ struct NewsElement: Codable {
 // MARK: - Response
 struct NewsResponse: Codable {
     let items: [NewsResponseItem]
-//    let profiles: [NewsProfile]
-//    let groups: [NewsGroup]
+    let profiles: [NewsProfile]
+    let groups: [NewsGroup]
     let nextFrom: String
 
     enum CodingKeys: String, CodingKey {
-        case items //, profiles, groups
+        case items, profiles, groups
         case nextFrom = "next_from"
     }
 }
 
 // MARK: - Group
 struct NewsGroup: Codable {
-    let id: Int
-    let name, screenName: String
-    let isClosed: Int
-    let type: String
-    let isAdmin, isMember, isAdvertiser: Int
-    let photo50, photo100, photo200: String
+    let id: Int?
+    let name, screenName: String?
+    let isClosed: Int?
+    let type: String?
+    let isAdmin, isMember, isAdvertiser: Int?
+    let photo50, photo100, photo200: String?
 
     enum CodingKeys: String, CodingKey {
         case id, name
@@ -124,47 +126,47 @@ struct NewsGroup: Codable {
 // MARK: - ResponseItem
 struct NewsResponseItem: Codable {
     let sourceID, date: Int
-    let canDoubtCategory, canSetCategory: Bool?
-    let topicID: Int?
-    let postType, text: String?
-    let markedAsAds: Int?
-//    let attachments: [NewsAttachment]?
-    let postSource: NewsPostSource?
-    let comments: NewsComments?
-    let likes: NewsPurpleLikes?
-    let reposts: NewsReposts?
-    let views: NewsViews?
-    let isFavorite: Bool?
-    let donut: NewsDonut?
-    let shortTextRate: Double?
+    let photos: NewsPhotos?
     let postID: Int
     let type: String
-    let photos: NewsPhotos?
+    let canDoubtCategory, canSetCategory: Bool?
+    let postType, text: String?
+    let markedAsAds: Int?
+    let attachments: [NewsAttachment]?
+    let postSource: PostSource?
+    let comments: Comments?
+    let likes: PurpleLikes?
+    let reposts: Reposts?
+    let views: Views?
+    let isFavorite: Bool?
+    let donut: Donut?
+    let shortTextRate: Double?
+    let carouselOffset: Int?
 
     enum CodingKeys: String, CodingKey {
         case sourceID = "source_id"
-        case date
+        case date, photos
+        case postID = "post_id"
+        case type
         case canDoubtCategory = "can_doubt_category"
         case canSetCategory = "can_set_category"
-        case topicID = "topic_id"
         case postType = "post_type"
         case text
         case markedAsAds = "marked_as_ads"
-//        case attachments
+        case attachments
         case postSource = "post_source"
         case comments, likes, reposts, views
         case isFavorite = "is_favorite"
         case donut
         case shortTextRate = "short_text_rate"
-        case postID = "post_id"
-        case type, photos
+        case carouselOffset = "carousel_offset"
     }
 }
 
 // MARK: - Attachment
 struct NewsAttachment: Codable {
     let type: String
-    let photo: Photo?
+    let photo: NewsPhoto?
     let video: NewsVideo?
 }
 
@@ -173,7 +175,6 @@ struct NewsPhoto: Codable {
     let albumID, date, id, ownerID: Int
     let hasTags: Bool
     let accessKey: String
-    let postID: Int
     let sizes: [NewsSize]
     let text: String
     let userID: Int
@@ -184,7 +185,6 @@ struct NewsPhoto: Codable {
         case ownerID = "owner_id"
         case hasTags = "has_tags"
         case accessKey = "access_key"
-        case postID = "post_id"
         case sizes, text
         case userID = "user_id"
     }
@@ -206,17 +206,17 @@ struct NewsSize: Codable {
 
 // MARK: - Video
 struct NewsVideo: Codable {
-    let accessKey: String
-    let canComment, canLike, canRepost, canSubscribe: Int
-    let canAddToFaves, canAdd, comments, date: Int
-    let videoDescription: String
-    let duration: Int
-    let image, firstFrame: [NewsSize]
-    let width, height, id, ownerID: Int
-    let title: String
-    let isFavorite: Bool
-    let trackCode, type: String
-    let views: Int
+    let accessKey: String?
+    let canComment, canLike, canRepost, canSubscribe: Int?
+    let canAddToFaves, canAdd, comments, date: Int?
+    let videoDescription: String?
+    let duration: Int?
+    let image, firstFrame: [NewsSize]?
+    let width, height, id, ownerID: Int?
+    let title: String?
+    let isFavorite: Bool?
+    let trackCode, type: String?
+    let views: Int?
 
     enum CodingKeys: String, CodingKey {
         case accessKey = "access_key"
@@ -240,17 +240,20 @@ struct NewsVideo: Codable {
 }
 
 // MARK: - Comments
-struct NewsComments: Codable {
-    let count, canPost: Int
+struct Comments: Codable {
+    let count, canPost, canView: Int
+    let groupsCanPost: Bool?
 
     enum CodingKeys: String, CodingKey {
         case count
         case canPost = "can_post"
+        case canView = "can_view"
+        case groupsCanPost = "groups_can_post"
     }
 }
 
 // MARK: - Donut
-struct NewsDonut: Codable {
+struct Donut: Codable {
     let isDonut: Bool
 
     enum CodingKeys: String, CodingKey {
@@ -259,7 +262,7 @@ struct NewsDonut: Codable {
 }
 
 // MARK: - PurpleLikes
-struct NewsPurpleLikes: Codable {
+struct PurpleLikes: Codable {
     let count, userLikes, canLike, canPublish: Int
 
     enum CodingKeys: String, CodingKey {
@@ -278,21 +281,16 @@ struct NewsPhotos: Codable {
 
 // MARK: - PhotosItem
 struct NewsPhotosItem: Codable {
-    let albumID: Int
-    let date: Int
-    let id: Int
-    let ownerID: Int
+    let albumID, date, id, ownerID: Int
     let hasTags: Bool
     let accessKey: String
-    let postID: Int?
-    let sizes: [NewsSize]
+    let sizes: [NewsSize]?
     let text: String
     let userID: Int
-//    let likes: NewsFluffyLikes
-//    let reposts: NewsReposts
-//    let comments: NewsViews
-    let canComment: Int
-    let canRepost: Int
+    let likes: FluffyLikes?
+    let reposts: Reposts?
+    let comments: Views?
+    let canComment, canRepost: Int
 
     enum CodingKeys: String, CodingKey {
         case albumID = "album_id"
@@ -300,23 +298,21 @@ struct NewsPhotosItem: Codable {
         case ownerID = "owner_id"
         case hasTags = "has_tags"
         case accessKey = "access_key"
-        case postID = "post_id"
-        case sizes
-        case text
+        case sizes, text
         case userID = "user_id"
-//        case likes, reposts, comments
+        case likes, reposts, comments
         case canComment = "can_comment"
         case canRepost = "can_repost"
     }
 }
 
 // MARK: - Views
-struct NewsViews: Codable {
+struct Views: Codable {
     let count: Int
 }
 
 // MARK: - FluffyLikes
-struct NewsFluffyLikes: Codable {
+struct FluffyLikes: Codable {
     let userLikes, count: Int
 
     enum CodingKeys: String, CodingKey {
@@ -326,7 +322,7 @@ struct NewsFluffyLikes: Codable {
 }
 
 // MARK: - Reposts
-struct NewsReposts: Codable {
+struct Reposts: Codable {
     let count, userReposted: Int
 
     enum CodingKeys: String, CodingKey {
@@ -336,21 +332,21 @@ struct NewsReposts: Codable {
 }
 
 // MARK: - PostSource
-struct NewsPostSource: Codable {
+struct PostSource: Codable {
     let type: String
 }
 
 // MARK: - Profile
 struct NewsProfile: Codable {
-    let firstName: String
-    let id: Int
-    let lastName: String
-    let canAccessClosed, isClosed: Bool
-    let sex: Int
-    let screenName: String
-    let photo50, photo100: String
-//    let onlineInfo: NewsOnlineInfo
-    let online: Int
+    let firstName: String?
+    let id: Int?
+    let lastName: String?
+    let canAccessClosed, isClosed: Bool?
+    let sex: Int?
+    let screenName: String?
+    let photo50, photo100: String?
+    let onlineInfo: OnlineInfo?
+    let online: Int?
 
     enum CodingKeys: String, CodingKey {
         case firstName = "first_name"
@@ -362,13 +358,13 @@ struct NewsProfile: Codable {
         case screenName = "screen_name"
         case photo50 = "photo_50"
         case photo100 = "photo_100"
-//        case onlineInfo = "online_info"
+        case onlineInfo = "online_info"
         case online
     }
 }
 
 // MARK: - OnlineInfo
-struct NewsOnlineInfo: Codable {
+struct OnlineInfo: Codable {
     let visible, isOnline, isMobile: Bool
 
     enum CodingKeys: String, CodingKey {

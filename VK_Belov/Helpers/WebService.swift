@@ -18,7 +18,7 @@ final class UserSession {
     var userID = ""
     var client_id = "7823487"
     var expires_in = ""
-    let v = "5.130"
+    let v = "5.154"
     
     let countPhoto = "50"
     let countFrends = "50"
@@ -146,11 +146,15 @@ class WebService{
         }
     }
     
+    //MARK: - News
     func newsRequest( completion: @escaping ([NewsResponseItem]) -> Void){
             
         let baseUrl = "https://api.vk.com/method/"
         let path = "newsfeed.get"
         let parameters: Parameters = [
+            "fields": "1",
+            "filters": "post",
+            "start_from": "next_from",
             "user_id": String(UserSession.shared.userID),
             "access_token": UserSession.shared.token,
             //"fields": "name,photo_50",
@@ -161,16 +165,41 @@ class WebService{
         let url = baseUrl+path
 //        let url = "https://api.vk.com/method/newsfeed.get?user_id="+id+"&v=5.130&access_token=" + token
                 
-        let urlTest = "https://api.vk.com/method/newsfeed.get?user_id=-" + String(UserSession.shared.userID) +
-                                "&v=5.130&access_token=" + String(UserSession.shared.token)
+        let urlString = "https://api.vk.com/method/newsfeed.get?user_id=-" + String(UserSession.shared.userID) +
+                                "&count=" + "3" +
+                                "&v=5.154&access_token=" + String(UserSession.shared.token)
         //
         // делаем запрос
+        
+        
+        
+//        if let url = URL(string: urlString) {
+//            do {
+//                if let data = try? Data(contentsOf: url) {
+//                    // we're OK to parse!
+//                    let decoder = JSONDecoder()
+//
+//                        
+//                    guard var news = try? decoder.decode(NewsElement.self, from: data).response.items else {
+//
+//                            return
+//                    }
+//
+//                    for i in 0..<news.count {
+//
+//                    }
+//                        //completion(jsonPetitions.response.items)
+//                    }
+//                }catch{
+//                    print(error)
+//                }
+//        }
+        
         Alamofire.request(url, method: .get, parameters: parameters).responseData { response in
             guard let data = response.value else { return }
             do {
-                let news = try! JSONDecoder().decode(NewsElement.self, from: data)
-                completion(news.response.items)
-                //insertOrUpdate(itemFrends: frends.response.items)
+                let news = try! JSONDecoder().decode(NewsElement.self, from: data).response.items
+                    completion(news)
             } catch {
                 print(error)
             }
@@ -180,65 +209,65 @@ class WebService{
     
 
     
-    // MARK: - not Use
-    func photosAlbumRequest(idFrend: String, completion: @escaping ([ItemPhotoAlbums]) -> Void ){
-        let baseUrl = "https://api.vk.com/method/"
-        let path = "photos.getAlbums"
-        let parameters: Parameters = [
-            "user_id": String(UserSession.shared.userID),
-            "access_token": UserSession.shared.token,
-            "owner_id":idFrend,
-            //"album_id":"profile",
-            //"rev":"0",
-            "count": "3",
-            "v": UserSession.shared.v
-        ]
-        // составляем url из базового адреса сервиса и конкретного пути к ресурсу
-        let url = baseUrl+path
-//        let urlTest = "https://api.vk.com/method/photos.getAlbums?user_id=-" + String(UserSession.shared.userID) +
-//                        "&owner_id="+"-"+idFrend+"&count=3&v=5.130&access_token=" + String(UserSession.shared.token)
-
-        // делаем запрос
-        Alamofire.request(url, method: .get, parameters: parameters).responseData { response in
-            guard let data = response.value else { return }
-            do {
-                let photo = try! JSONDecoder().decode(PhotoAlbums.self, from: data)
-                completion(photo.response.items)
-            } catch {
-                print(error)
-            }
-        }
-    }
-    
-    func photosRequest(idFrend:String, completion: @escaping ([ItemPhoto]) -> Void ){
-        let baseUrl = "https://api.vk.com/method/"
-        let path = "photos.get"
-        let parameters: Parameters = [
-            "user_id": String(UserSession.shared.userID),
-            "access_token": UserSession.shared.token,
-            "owner_id":idFrend,
-            "album_id":"profile",
-            "rev":"0",
-            "count": "3",
-            "v": UserSession.shared.v
-        ]
-        // составляем url из базового адреса сервиса и конкретного пути к ресурсу
-        let url = baseUrl+path
-//        let urlTest = "https://api.vk.com/method/photos.getAlbums?user_id=-" + String(UserSession.shared.userID) +
-//                        "&owner_id="+idFrend+"&count=3&v=5.130&access_token=" + String(UserSession.shared.token)
-
-
-        // делаем запрос
-        Alamofire.request(url, method: .get, parameters: parameters).responseData { response in
-            guard let data = response.value else { return }
-            do {
-                let photo = try! JSONDecoder().decode(Photo.self, from: data)
-                completion(photo.response.items)
-            } catch {
-                print(error)
-            }
-        }
-    }
+// MARK: - not Use
+//    func photosAlbumRequest(idFrend: String, completion: @escaping ([ItemPhotoAlbums]) -> Void ){
+//        let baseUrl = "https://api.vk.com/method/"
+//        let path = "photos.getAlbums"
+//        let parameters: Parameters = [
+//            "user_id": String(UserSession.shared.userID),
+//            "access_token": UserSession.shared.token,
+//            "owner_id":idFrend,
+//            //"album_id":"profile",
+//            //"rev":"0",
+//            "count": "3",
+//            "v": UserSession.shared.v
+//        ]
+//        // составляем url из базового адреса сервиса и конкретного пути к ресурсу
+//        let url = baseUrl+path
+////        let urlTest = "https://api.vk.com/method/photos.getAlbums?user_id=-" + String(UserSession.shared.userID) +
+////                        "&owner_id="+"-"+idFrend+"&count=3&v=5.130&access_token=" + String(UserSession.shared.token)
+//
+//        // делаем запрос
+//        Alamofire.request(url, method: .get, parameters: parameters).responseData { response in
+//            guard let data = response.value else { return }
+//            do {
+//                let photo = try! JSONDecoder().decode(PhotoAlbums.self, from: data)
+//                completion(photo.response.items)
+//            } catch {
+//                print(error)
+//            }
+//        }
+//    }
+//
+//    func photosRequest(idFrend:String, completion: @escaping ([ItemPhoto]) -> Void ){
+//        let baseUrl = "https://api.vk.com/method/"
+//        let path = "photos.get"
+//        let parameters: Parameters = [
+//            "user_id": String(UserSession.shared.userID),
+//            "access_token": UserSession.shared.token,
+//            "owner_id":idFrend,
+//            "album_id":"profile",
+//            "rev":"0",
+//            "count": "3",
+//            "v": UserSession.shared.v
+//        ]
+//        // составляем url из базового адреса сервиса и конкретного пути к ресурсу
+//        let url = baseUrl+path
+////        let urlTest = "https://api.vk.com/method/photos.getAlbums?user_id=-" + String(UserSession.shared.userID) +
+////                        "&owner_id="+idFrend+"&count=3&v=5.130&access_token=" + String(UserSession.shared.token)
+//
+//
+//        // делаем запрос
+//        Alamofire.request(url, method: .get, parameters: parameters).responseData { response in
+//            guard let data = response.value else { return }
+//            do {
+//                let photo = try! JSONDecoder().decode(Photo.self, from: data)
+//                completion(photo.response.items)
+//            } catch {
+//                print(error)
+//            }
+//        }
+//    }
     
     
 }

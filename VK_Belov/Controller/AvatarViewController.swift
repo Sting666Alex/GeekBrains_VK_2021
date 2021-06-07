@@ -13,7 +13,7 @@ class AvatarViewController: UIViewController {
     
     @IBOutlet weak var tokenUser: UILabel!
     
-    let url: URL = URL(string:"") ?? URL(string: "https://upload.wikimedia.org/wikipedia/ru/a/a2/Phil_Collins_Face_Value.jpeg")!
+//    let url: URL = URL(string:"") ?? URL(string: "https://upload.wikimedia.org/wikipedia/ru/a/a2/Phil_Collins_Face_Value.jpeg")!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,10 @@ class AvatarViewController: UIViewController {
         let url = URL(string: "https://upload.wikimedia.org/wikipedia/ru/a/a2/Phil_Collins_Face_Value.jpeg"
         )
 */
-        let data = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+        guard let img = UIImage(named: "1") else { return }
+        var data = img.jpegData(compressionQuality: 1)
+        
+//        let data = try? Data(contentsOf: url) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
         
         avatarIV.backgroundColor = .gray
         avatarIV.layer.shouldRasterize = false

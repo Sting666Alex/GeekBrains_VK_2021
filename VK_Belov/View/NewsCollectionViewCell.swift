@@ -45,9 +45,9 @@ class NewsCollectionViewCell: UICollectionViewCell {
     
     func configure(titleLableC: String, newsElement: NewsResponseItem){
         
-        titleLable.text = titleLableC
-        titleText.text  = titleLableC
-        
+        titleLable.text         = titleLableC
+        titleText.text          = titleLableC
+        whoAndThenLable.text    = titleLableC
         
         titleFoto.isHidden = false
         
@@ -58,7 +58,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
             if let likes = newsElement.likes?.count{
                 likeNumber.text = String(likes)
             }
-            
+            addPhotoInUiView(newsElement: newsElement)
         }
         else if newsElement.type == "wall_photo"{
             addPhotoInUiView(newsElement: newsElement)
@@ -68,8 +68,6 @@ class NewsCollectionViewCell: UICollectionViewCell {
     }
 
     func addPhotoInUiView(newsElement: NewsResponseItem){
-        
-        titleFoto.isHidden = true
         
         titleFoto.layer.cornerRadius = titleFoto.frame.width / 2
         
@@ -86,11 +84,17 @@ class NewsCollectionViewCell: UICollectionViewCell {
         guard let img = UIImage(named: "1") else { return }
         var data = img.jpegData(compressionQuality: 1)
         
-        if let countSize = newsElement.photos?.items[0].sizes{
+        titleFoto.isHidden = true
+        
+        if let countSize = newsElement.attachments?[0].photo?.sizes{
             if !countSize.isEmpty {
+                
                 if let url:URL = URL(string: countSize[0].url){
                     data = try? Data(contentsOf: url)
+                    titleFoto.isHidden = false
+                    titleFoto.frame = CGRect(x: 0, y: 0, width: countSize[0].width, height: countSize[0].height)
                 }
+                
             }
         }
         
@@ -99,6 +103,9 @@ class NewsCollectionViewCell: UICollectionViewCell {
         
         //myImage.clipsToBounds = true
         //myImage.layer.cornerRadius = titleFoto.frame.height / 2
+        
+        
+        
         
         titleFoto.addSubview(myImage)
     }
